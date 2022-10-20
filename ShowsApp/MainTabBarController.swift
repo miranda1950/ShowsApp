@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
     let favorite = FavoritesCoordinator(navigationController: UINavigationController())
     
     let selectedColor = UIColor(Color("PrimaryYellow"))
-    let unselectedColor = UIColor.lightGray
+    let unselectedColor = UIColor(Color("LightGray"))
    
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
         
         tabBar.unselectedItemTintColor = unselectedColor
         tabBar.selectedImageTintColor = selectedColor
-        tabBar.backgroundColor = .darkGray
+        tabBar.backgroundColor = UIColor(Color("DarkGray"))
         
         
         main.start()

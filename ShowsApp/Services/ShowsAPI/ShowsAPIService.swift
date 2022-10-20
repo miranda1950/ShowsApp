@@ -14,9 +14,9 @@ final class ShowsAPIService: ShowsAPIServiceProtocol {
     
     init() { }
     
-    func fetchShow(completionHandler: @escaping (Result<ShowsAPIResponse, Error>) -> Void) {
+    func fetchShow(completionHandler: @escaping (Result<[ShowsAPIResponse], Error>) -> Void) {
         
-        guard let url = URL(string: "http://api.tvmaze.com") else {
+        guard let url = URL(string: "https://api.tvmaze.com/shows") else {
             return completionHandler(.failure(ShowsAPIError.badURLName))
         }
         
@@ -26,3 +26,5 @@ final class ShowsAPIService: ShowsAPIServiceProtocol {
    
     
 }
+
+

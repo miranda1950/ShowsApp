@@ -9,6 +9,6 @@ import Foundation
 
 protocol ShowsAPIServiceProtocol: AnyObject {
     
-    func fetchShow(completionHandler: @escaping (Result<ShowsAPIResponse, Error>) -> Void)
+    func fetchShow(completionHandler: @escaping (Result<[ShowsAPIResponse], Error>) -> Void)
     
 }
