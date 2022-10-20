@@ -16,7 +16,13 @@
 		C570740828FD6944000B690C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740728FD6944000B690C /* Coordinator.swift */; };
 		C570740A28FD6B8F000B690C /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740928FD6B8F000B690C /* RootCoordinator.swift */; };
 		C570740C28FD6CF7000B690C /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740B28FD6CF7000B690C /* HomeCoordinator.swift */; };
+		C589B00F29016AE30082288C /* ScheduleSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B00E29016AE30082288C /* ScheduleSliderView.swift */; };
+		C589B0122901B5830082288C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B0112901B5830082288C /* DetailView.swift */; };
 		C596241E29013E25009E9B16 /* HomeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596241D29013E25009E9B16 /* HomeSliderView.swift */; };
+		C5962421290150FC009E9B16 /* ScheduleAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5962420290150FC009E9B16 /* ScheduleAPIResponse.swift */; };
+		C596242329015114009E9B16 /* ScheduleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596242229015114009E9B16 /* ScheduleAPIService.swift */; };
+		C596242529015127009E9B16 /* ScheduleAPIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596242429015127009E9B16 /* ScheduleAPIServiceProtocol.swift */; };
+		C596242729015139009E9B16 /* ScheduleAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596242629015139009E9B16 /* ScheduleAPIError.swift */; };
 		C5C106B528FEA96B00218419 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C106B428FEA96B00218419 /* MainTabBarController.swift */; };
 		C5C106B728FEB01B00218419 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C106B628FEB01B00218419 /* SearchViewModel.swift */; };
 		C5C106B928FEB58700218419 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C106B828FEB58700218419 /* FavoritesCoordinator.swift */; };
@@ -47,7 +53,13 @@
 		C570740728FD6944000B690C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C570740928FD6B8F000B690C /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		C570740B28FD6CF7000B690C /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		C589B00E29016AE30082288C /* ScheduleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSliderView.swift; sourceTree = "<group>"; };
+		C589B0112901B5830082288C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C596241D29013E25009E9B16 /* HomeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSliderView.swift; sourceTree = "<group>"; };
+		C5962420290150FC009E9B16 /* ScheduleAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAPIResponse.swift; sourceTree = "<group>"; };
+		C596242229015114009E9B16 /* ScheduleAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAPIService.swift; sourceTree = "<group>"; };
+		C596242429015127009E9B16 /* ScheduleAPIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAPIServiceProtocol.swift; sourceTree = "<group>"; };
+		C596242629015139009E9B16 /* ScheduleAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAPIError.swift; sourceTree = "<group>"; };
 		C5C106B428FEA96B00218419 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C5C106B628FEB01B00218419 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C5C106B828FEB58700218419 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
@@ -103,6 +115,7 @@
 				C5C8395A28FD938900AE372A /* Home */,
 				C5C8395B28FD93A000AE372A /* Search */,
 				C5C106BA28FEB58E00218419 /* Favorites */,
+				C589B0102901B55F0082288C /* Detail */,
 				C570740728FD6944000B690C /* Coordinator.swift */,
 				C570740928FD6B8F000B690C /* RootCoordinator.swift */,
 				C57073F728FD6848000B690C /* ViewController.swift */,
@@ -112,6 +125,25 @@
 				C570740128FD6849000B690C /* Info.plist */,
 			);
 			path = ShowsApp;
+			sourceTree = "<group>";
+		};
+		C589B0102901B55F0082288C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C589B0112901B5830082288C /* DetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		C596241F290150E0009E9B16 /* ScheduleAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C5962420290150FC009E9B16 /* ScheduleAPIResponse.swift */,
+				C596242229015114009E9B16 /* ScheduleAPIService.swift */,
+				C596242429015127009E9B16 /* ScheduleAPIServiceProtocol.swift */,
+				C596242629015139009E9B16 /* ScheduleAPIError.swift */,
+			);
+			path = ScheduleAPI;
 			sourceTree = "<group>";
 		};
 		C5C106BA28FEB58E00218419 /* Favorites */ = {
@@ -127,7 +159,6 @@
 		C5C106BF28FEEA3900218419 /* ShowsAPI */ = {
 			isa = PBXGroup;
 			children = (
-				C5C106C028FEEA5300218419 /* Models */,
 				C5C106CB28FF068600218419 /* ShowsAPIResponse.swift */,
 				C5C106D228FF06D700218419 /* ShowsAPIService.swift */,
 				C5C106D028FF06B800218419 /* ShowsAPIServiceProtocol.swift */,
@@ -136,16 +167,10 @@
 			path = ShowsAPI;
 			sourceTree = "<group>";
 		};
-		C5C106C028FEEA5300218419 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		C5C106C328FF00EE00218419 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C596241F290150E0009E9B16 /* ScheduleAPI */,
 				C5C106C428FF010C00218419 /* Data */,
 				C5C106BF28FEEA3900218419 /* ShowsAPI */,
 			);
@@ -169,6 +194,7 @@
 				C5C8395828FD80C900AE372A /* HomeViewModel.swift */,
 				C5C8395228FD707C00AE372A /* HomeView.swift */,
 				C596241D29013E25009E9B16 /* HomeSliderView.swift */,
+				C589B00E29016AE30082288C /* ScheduleSliderView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -255,8 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C106C828FF015500218419 /* DataServiceError.swift in Sources */,
+				C596242729015139009E9B16 /* ScheduleAPIError.swift in Sources */,
 				C5C106BE28FEB5C600218419 /* FavoritesViewModel.swift in Sources */,
 				C570740828FD6944000B690C /* Coordinator.swift in Sources */,
+				C596242329015114009E9B16 /* ScheduleAPIService.swift in Sources */,
 				C5C8395728FD745900AE372A /* SearchView.swift in Sources */,
 				C5C106B528FEA96B00218419 /* MainTabBarController.swift in Sources */,
 				C5C106D328FF06D700218419 /* ShowsAPIService.swift in Sources */,
@@ -264,10 +292,14 @@
 				C5C106C628FF012400218419 /* DataServiceProtocol.swift in Sources */,
 				C5C8395328FD707C00AE372A /* HomeView.swift in Sources */,
 				C5C106BC28FEB5AF00218419 /* FavoritesView.swift in Sources */,
+				C5962421290150FC009E9B16 /* ScheduleAPIResponse.swift in Sources */,
 				C5C8395928FD80C900AE372A /* HomeViewModel.swift in Sources */,
 				C57073F828FD6848000B690C /* ViewController.swift in Sources */,
+				C589B0122901B5830082288C /* DetailView.swift in Sources */,
+				C596242529015127009E9B16 /* ScheduleAPIServiceProtocol.swift in Sources */,
 				C5C106B928FEB58700218419 /* FavoritesCoordinator.swift in Sources */,
 				C596241E29013E25009E9B16 /* HomeSliderView.swift in Sources */,
+				C589B00F29016AE30082288C /* ScheduleSliderView.swift in Sources */,
 				C5C106B728FEB01B00218419 /* SearchViewModel.swift in Sources */,
 				C5C106CC28FF068600218419 /* ShowsAPIResponse.swift in Sources */,
 				C570740A28FD6B8F000B690C /* RootCoordinator.swift in Sources */,

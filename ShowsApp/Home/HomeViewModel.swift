@@ -10,14 +10,16 @@ import SwiftUI
 final class HomeViewModel: ObservableObject {
     
     private let showsAPIService: ShowsAPIServiceProtocol
+    private let scheduleAPIService: ScheduleAPIServiceProtocol
+    
    @Published var movies = [ShowsAPIResponse] ()
-    @State private var image = UIImage()
+    @Published var schedule = [ScheduleAPIResponse] ()
     
     
-    init(showsAPIService: ShowsAPIServiceProtocol){
+    init(showsAPIService: ShowsAPIServiceProtocol, scheduleAPIService: ScheduleAPIServiceProtocol){
         
         self.showsAPIService = showsAPIService
-        
+        self.scheduleAPIService = scheduleAPIService
         
     }
     
@@ -38,6 +40,20 @@ final class HomeViewModel: ObservableObject {
         }
         
         
+    }
+    func loadSchedule() {
+        scheduleAPIService.fetchShowsSchedule() { result in
+            
+            DispatchQueue.main.async {
+                switch (result) {
+                case .success(let response):
+               self.schedule.append(contentsOf: response)
+                    print(self.schedule)
+                case .failure(let error):
+                    print("error: \(error.localizedDescription) ")
+                }
+            }
+        }
     }
     
     

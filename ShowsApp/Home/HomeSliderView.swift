@@ -11,12 +11,16 @@ struct HomeSliderView: View {
     
     var movie: ShowsAPIResponse
     
+    
     var body: some View {
         
        
         VStack {
             AsyncImage(url: movie.image.medium)
                 .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.leading, 10)
+                
                 
                 
             VStack(alignment: .leading) {
@@ -24,17 +28,19 @@ struct HomeSliderView: View {
                 Image(systemName: "star.fill")
                     .foregroundColor(Color("PrimaryYellow"))
                     .scaledToFit()
-                    
-                
-                
+
                 Text(String(movie.rating.average ?? 0.0))
                     .foregroundColor(Color("LightGray"))
+                Spacer()
             }
+            
             
             Text(movie.name)
                 .foregroundColor(Color("LightGray"))
         }
+            .padding(.leading,10)
         }
+        
     }
 }
 
