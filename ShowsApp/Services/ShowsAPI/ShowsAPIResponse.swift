@@ -17,6 +17,11 @@ struct ShowsAPIResponse: Identifiable, Codable{
     let image: Photo
     let rating: Rating
     
+    var niceSummary: String {
+        
+        summary.replacingOccurrences(of: "<p><b>", with: "")
+    }
+    
     
     struct Photo: Codable {
         let medium: URL?
@@ -29,6 +34,14 @@ struct ShowsAPIResponse: Identifiable, Codable{
     
     struct Rating: Codable {
         let average: Double?
+    }
+    
+    init(id: Int, name: String, summary: String, image: Photo, rating: Rating) {
+        self.id = id
+        self.name = name
+        self.summary = summary
+        self.image = image
+        self.rating = rating
     }
     
     

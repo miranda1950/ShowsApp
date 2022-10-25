@@ -51,26 +51,3 @@ struct HomeSliderView: View {
     }
 } */
 
-/*VStack {
-    AsyncImage(url: movie.image.medium)
-        .scaledToFit()
-        .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.5)
-        .padding(.leading, 5)
-    
-    VStack(alignment: .leading){
-    HStack {
-        Image(systemName: "star.fill")
-            .foregroundColor(Color("PrimaryYellow"))
-        
-        Text(String(movie.rating.average ?? 0.0))
-            .foregroundColor(Color("LightGray"))
-    }
-    }
-    VStack {
-        
-        Text(movie.name)
-            .foregroundColor(Color("LightGray"))
-       
-            
-    }
-} */

@@ -13,11 +13,14 @@ struct ScheduleAPIResponse:Identifiable,  Codable {
     let id: Int
       let airdate: String
       let airtime: String
+    
       let show: Show
+    
     
       struct Show: Codable{
       let image: Image?
           let name: String
+          let summary: String?
       }
     
       struct Image: Codable{

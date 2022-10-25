@@ -11,7 +11,9 @@ import UIKit
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = HomeViewModel(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService())
+    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService())
+    
+    
 
     var body: some View {
         
@@ -40,6 +42,10 @@ struct HomeView: View {
             }
                
             .frame(width: geo.size.width * 0.52, height: geo.size.height * 0.50)
+            .onTapGesture {
+            
+                viewModel.onGoToDetails?(movie)
+            }
             
             }
                        
@@ -59,6 +65,7 @@ struct HomeView: View {
                       .foregroundColor(Color("PrimaryYellow"))
                       .font(.subheadline)
                       .fontWeight(.bold)
+                      
             }
             
             
@@ -71,6 +78,11 @@ struct HomeView: View {
                                 
                         }
                         .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
+                        .onTapGesture {
+                            viewModel.onGoToDetails?(schedule)
+                                
+                               
+                        }
                     }
                     
                 }

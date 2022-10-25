@@ -32,10 +32,22 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func createHomeViewController()->UIViewController {
-        let vm = HomeViewModel(showsAPIService: ShowsAPIService(),scheduleAPIService: ScheduleAPIService())
+        let vm = HomeViewModel<Any>(showsAPIService: ShowsAPIService(),scheduleAPIService: ScheduleAPIService())
         let viewController = UIHostingController(rootView: HomeView(viewModel: vm))
    
+        
+        vm.onGoToDetails = { [weak self] movie in
+            self?.goToDetails(name: movie)
+        }
         return viewController
+    }
+    
+    private func goToDetails<T>(name: T) {
+        
+        let detailCoordinator = DetailCoordinator(data: name)
+        childCoordinator?.append(detailCoordinator)
+        let detailViewController = detailCoordinator.start()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
     
     

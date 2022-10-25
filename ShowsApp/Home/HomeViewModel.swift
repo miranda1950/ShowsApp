@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-final class HomeViewModel: ObservableObject {
+final class HomeViewModel<T>: ObservableObject {
     
     private let showsAPIService: ShowsAPIServiceProtocol
     private let scheduleAPIService: ScheduleAPIServiceProtocol
+    
+    var onGoToDetails: ((_ movie: T) -> Void)?
     
    @Published var movies = [ShowsAPIResponse] ()
     @Published var schedule = [ScheduleAPIResponse] ()
