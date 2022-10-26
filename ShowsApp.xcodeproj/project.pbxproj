@@ -18,6 +18,10 @@
 		C570740828FD6944000B690C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740728FD6944000B690C /* Coordinator.swift */; };
 		C570740A28FD6B8F000B690C /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740928FD6B8F000B690C /* RootCoordinator.swift */; };
 		C570740C28FD6CF7000B690C /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C570740B28FD6CF7000B690C /* HomeCoordinator.swift */; };
+		C572F0532908925D00376FB7 /* CastAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F0522908925D00376FB7 /* CastAPIResponse.swift */; };
+		C572F055290892FE00376FB7 /* CastAPIServicePortocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F054290892FE00376FB7 /* CastAPIServicePortocol.swift */; };
+		C572F0572908937700376FB7 /* CastAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F0562908937700376FB7 /* CastAPIService.swift */; };
+		C572F059290893FC00376FB7 /* CastAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F058290893FC00376FB7 /* CastAPIError.swift */; };
 		C589B00F29016AE30082288C /* ScheduleSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B00E29016AE30082288C /* ScheduleSliderView.swift */; };
 		C589B0122901B5830082288C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B0112901B5830082288C /* DetailView.swift */; };
 		C596241E29013E25009E9B16 /* HomeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596241D29013E25009E9B16 /* HomeSliderView.swift */; };
@@ -59,6 +63,10 @@
 		C570740728FD6944000B690C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C570740928FD6B8F000B690C /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		C570740B28FD6CF7000B690C /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		C572F0522908925D00376FB7 /* CastAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIResponse.swift; sourceTree = "<group>"; };
+		C572F054290892FE00376FB7 /* CastAPIServicePortocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIServicePortocol.swift; sourceTree = "<group>"; };
+		C572F0562908937700376FB7 /* CastAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIService.swift; sourceTree = "<group>"; };
+		C572F058290893FC00376FB7 /* CastAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIError.swift; sourceTree = "<group>"; };
 		C589B00E29016AE30082288C /* ScheduleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSliderView.swift; sourceTree = "<group>"; };
 		C589B0112901B5830082288C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C596241D29013E25009E9B16 /* HomeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSliderView.swift; sourceTree = "<group>"; };
@@ -135,14 +143,25 @@
 			path = ShowsApp;
 			sourceTree = "<group>";
 		};
+		C572F0512908924800376FB7 /* CastAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C572F0522908925D00376FB7 /* CastAPIResponse.swift */,
+				C572F054290892FE00376FB7 /* CastAPIServicePortocol.swift */,
+				C572F0562908937700376FB7 /* CastAPIService.swift */,
+				C572F058290893FC00376FB7 /* CastAPIError.swift */,
+			);
+			path = CastAPI;
+			sourceTree = "<group>";
+		};
 		C589B0102901B55F0082288C /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				C534D2B72901B8D800560D44 /* DetailCoordinator.swift */,
 				C534D2B92901BA4900560D44 /* DetailsViewModel.swift */,
 				C589B0112901B5830082288C /* DetailView.swift */,
-				C5CE86962906F6AE002FAE8B /* ScheduleView.swift */,
 				C5CE86942906F658002FAE8B /* MovieView.swift */,
+				C5CE86962906F6AE002FAE8B /* ScheduleView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -182,6 +201,7 @@
 		C5C106C328FF00EE00218419 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C572F0512908924800376FB7 /* CastAPI */,
 				C596241F290150E0009E9B16 /* ScheduleAPI */,
 				C5C106C428FF010C00218419 /* Data */,
 				C5C106BF28FEEA3900218419 /* ShowsAPI */,
@@ -300,11 +320,15 @@
 				C5CE86952906F658002FAE8B /* MovieView.swift in Sources */,
 				C596242329015114009E9B16 /* ScheduleAPIService.swift in Sources */,
 				C5C8395728FD745900AE372A /* SearchView.swift in Sources */,
+				C572F0532908925D00376FB7 /* CastAPIResponse.swift in Sources */,
+				C572F0572908937700376FB7 /* CastAPIService.swift in Sources */,
 				C5C106B528FEA96B00218419 /* MainTabBarController.swift in Sources */,
 				C5C106D328FF06D700218419 /* ShowsAPIService.swift in Sources */,
 				C5C106CA28FF016800218419 /* DataService.swift in Sources */,
 				C5C106C628FF012400218419 /* DataServiceProtocol.swift in Sources */,
+				C572F059290893FC00376FB7 /* CastAPIError.swift in Sources */,
 				C5C8395328FD707C00AE372A /* HomeView.swift in Sources */,
+				C572F055290892FE00376FB7 /* CastAPIServicePortocol.swift in Sources */,
 				C5C106BC28FEB5AF00218419 /* FavoritesView.swift in Sources */,
 				C5962421290150FC009E9B16 /* ScheduleAPIResponse.swift in Sources */,
 				C5C8395928FD80C900AE372A /* HomeViewModel.swift in Sources */,

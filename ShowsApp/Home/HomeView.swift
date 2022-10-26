@@ -11,7 +11,7 @@ import UIKit
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService())
+    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService())
     
     
 
@@ -43,8 +43,8 @@ struct HomeView: View {
                
             .frame(width: geo.size.width * 0.52, height: geo.size.height * 0.50)
             .onTapGesture {
-            
-                viewModel.onGoToDetails?(movie)
+                viewModel.getActors(movie.id)
+                viewModel.onGoToDetails?(movie, viewModel.actors)
             }
             
             }
@@ -79,7 +79,8 @@ struct HomeView: View {
                         }
                         .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
                         .onTapGesture {
-                            viewModel.onGoToDetails?(schedule)
+                            viewModel.getActors(schedule.show.id)
+                            viewModel.onGoToDetails?(schedule, viewModel.actors)
                                 
                                
                         }
@@ -99,6 +100,7 @@ struct HomeView: View {
         .onAppear {
             viewModel.loadShows()
             viewModel.loadSchedule()
+            viewModel.emptyActorsField()
         }
         
 }
@@ -109,6 +111,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService()))
+        HomeView(viewModel: HomeViewModel(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService()))
     }
 }
