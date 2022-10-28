@@ -15,9 +15,10 @@ final class HomeViewModel<T>: ObservableObject {
     
     var onGoToDetails: ((_ movie: T, _ cast: [CastAPIResponse]) -> Void)?
     
-   @Published var movies = [ShowsAPIResponse] ()
+    @Published var movies = [ShowsAPIResponse] ()
     @Published var schedule = [ScheduleAPIResponse] ()
     @Published var actors = [CastAPIResponse] ()
+    
     
     
     init(showsAPIService: ShowsAPIServiceProtocol, scheduleAPIService: ScheduleAPIServiceProtocol,castAPIService: CastAPIServiceProtocol){
@@ -29,16 +30,15 @@ final class HomeViewModel<T>: ObservableObject {
     
     
     func loadShows() {
-        showsAPIService.fetchShow() { result in
-            DispatchQueue.main.async {
-            switch (result) {
-            case .success(let response):
-                self.movies.append(contentsOf: response)
-                
-            case .failure(let error):
-              print("error: \( error.localizedDescription)")
-            }
-        }
+        showsAPIService.fetchShow() { [weak self] result in
+                switch (result) {
+                case .success(let response):
+                    self?.movies.insert(contentsOf: response, at: 0)
+                    
+                case .failure(let error):
+                    print("error: \( error.localizedDescription)")
+                }
+            
             
             
         }
@@ -46,38 +46,42 @@ final class HomeViewModel<T>: ObservableObject {
         
     }
     func loadSchedule() {
-        scheduleAPIService.fetchShowsSchedule() { result in
+        scheduleAPIService.fetchShowsSchedule() { [weak self] result in
             
-            DispatchQueue.main.async {
+            
                 switch (result) {
                 case .success(let response):
-               self.schedule.append(contentsOf: response)
-                    print(self.schedule)
+                    self?.schedule.insert(contentsOf: response, at: 0)
                 case .failure(let error):
                     print("error: \(error.localizedDescription) ")
                 }
-            }
+            
         }
     }
     
     func getActors(_ movie: Int) {
-        castAPIService.fetchShowsSchedule(for: movie) { result in
+        castAPIService.fetchShowsSchedule(for: movie) { [weak self] result in
             switch(result) {
             case .success(let response):
                 let cast = response
-                self.actors.append(contentsOf: cast)
+                self?.actors.insert(contentsOf: cast, at: 0)
+                
             case .failure(let error):
                 print("error \(error.localizedDescription)")
             }
-        
+            
         }
     }
     
     func emptyActorsField(){
         for _ in actors.enumerated().reversed() {
-          actors.removeAll()
+            actors.removeAll()
         }
-      }
+    }
+    
+    func markFavorite() {
+
+    }
     
     
 }

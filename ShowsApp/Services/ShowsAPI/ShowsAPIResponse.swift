@@ -13,6 +13,7 @@ struct ShowsAPIResponse: Identifiable, Codable{
     
     let id: Int
     let name: String
+    let premiered: String?
     let summary: String
     let image: Photo
     let rating: Rating
@@ -36,9 +37,10 @@ struct ShowsAPIResponse: Identifiable, Codable{
         let average: Double?
     }
     
-    init(id: Int, name: String, summary: String, image: Photo, rating: Rating) {
+    init(id: Int, name: String, premiered: String, summary: String, image: Photo, rating: Rating) {
         self.id = id
         self.name = name
+        self.premiered = premiered
         self.summary = summary
         self.image = image
         self.rating = rating

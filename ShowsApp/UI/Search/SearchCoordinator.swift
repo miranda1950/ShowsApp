@@ -17,10 +17,10 @@ final class SearchCoordinator: Coordinator {
     
     func start() -> UIViewController {
         
-       
-    
+        
+        
         let vc = createSearchViewController()
-       
+        
         let navigationController = UINavigationController(rootViewController: vc)
         self.navigationController = navigationController
         vc.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass.fill"))
@@ -28,7 +28,7 @@ final class SearchCoordinator: Coordinator {
     }
     
     private func createSearchViewController()->UIViewController {
-        let vm = SearchViewModel()
+        let vm = SearchViewModel(searchAPIService: searchAPIService())
         let viewController = UIHostingController(rootView: SearchView(viewModel: vm))
         
         

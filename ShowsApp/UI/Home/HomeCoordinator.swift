@@ -19,22 +19,22 @@ final class HomeCoordinator: Coordinator {
     }
     func start() -> UIViewController {
         
-    
+        
         let vc = createHomeViewController()
-       
+        
         let navigationController = UINavigationController(rootViewController: vc)
         self.navigationController = navigationController
         //vc.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
-       
+        
         return navigationController
     }
     
     private func createHomeViewController()->UIViewController {
         let vm = HomeViewModel<Any>(showsAPIService: ShowsAPIService(),scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService())
         let viewController = UIHostingController(rootView: HomeView(viewModel: vm))
-   
+        
         
         vm.onGoToDetails = { [weak self] movie, cast in
             self?.goToDetails(name: movie, cast: cast)

@@ -17,7 +17,7 @@ struct ScheduleView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                  
+                
             }, placeholder: { ProgressView()
             }
             )
@@ -38,53 +38,53 @@ struct ScheduleView: View {
                         .fontWeight(.bold)
                 }
                 
-              
+                
             }
             .padding(.leading, 5)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(cast, id:\.person?.id) { person in
-                     
+                        
                         VStack {
                             VStack {
                                 AsyncImage(url: person.person?.image?.medium) {
-                                image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .scaledToFit()
-                                   
+                                    image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .scaledToFit()
                                     
-                            } placeholder: {
-                                ProgressView()
-                                    .progressViewStyle(.circular)
-                            }
+                                    
+                                } placeholder: {
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                }
                             }
                             .frame(width: 90, height: 120)
-                      
-                          Text(person.person?.name ?? "N/a")
+                            
+                            Text(person.person?.name ?? "N/a")
                                 .foregroundColor(Color("LightGray"))
                                 .font(.caption)
                                 .lineLimit(1)
                             
-                          
-                    }
+                            
+                        }
                         
                         
                     }
                     
                 }
             }
-        
-   
+            
+            
         }
-
+        
     }
 }
 
 /*struct ScheduleView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScheduleView()
-    }
-}
+ static var previews: some View {
+ ScheduleView()
+ }
+ }
  */

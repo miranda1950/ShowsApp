@@ -13,18 +13,18 @@ struct MovieView: View {
     let cast: [CastAPIResponse]
     
     var body: some View {
-       
+        
         VStack {
             AsyncImage(url: movie.image.original, content: { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                  
+                
             }, placeholder: { ProgressView()
             }
             )
             
-          Text(movie.niceSummary)
+            Text(movie.niceSummary)
                 .foregroundColor(Color("LightGray"))
                 .font(.caption)
                 .lineLimit(4)
@@ -40,70 +40,70 @@ struct MovieView: View {
                         .fontWeight(.bold)
                 }
                 
-              
+                
             }
             .padding(.leading, 5)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(cast, id: \.person?.id) { person in
-                     
+                        
                         VStack {
                             VStack {
-                            AsyncImage(url: person.person?.image?.medium) {
-                                image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .scaledToFit()
-                                   
+                                AsyncImage(url: person.person?.image?.medium) {
+                                    image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .scaledToFit()
                                     
-                            } placeholder: {
-                                ProgressView()
-                                    .progressViewStyle(.circular)
-                            }
+                                    
+                                } placeholder: {
+                                    ProgressView()
+                                        .progressViewStyle(.circular)
+                                }
                             }
                             .frame(width: 90, height: 120)
-                      
-                          Text(person.person?.name ?? "N/a")
+                            
+                            Text(person.person?.name ?? "N/a")
                                 .foregroundColor(Color("LightGray"))
                                 .font(.caption)
                                 .lineLimit(1)
                             
-                          
-                    }
+                            
+                        }
                         
                         
                     }
                     
                 }
             }
-        
-   
+            
+            
         }
         
     }
 }
 
 /*struct MovieView_Previews: PreviewProvider {
-    static var movie =  Self.Previews
-    static var previews: some View {
-        MovieView(movie: movie)
-    }
-}
+ static var movie =  Self.Previews
+ static var previews: some View {
+ MovieView(movie: movie)
+ }
+ }
  ScrollView(.horizontal, showsIndicators: false) {
-    HStack {
-         ForEach(viewModel.schedule) { schedule in
-             
-             VStack{
-                 ScheduleSliderView(schedule: schedule)
-                     
-             }
-             .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
-             .onTapGesture {
-                 viewModel.onGoToDetails?(schedule, viewModel.actors)
-                     
-                    
-             }
-         }
-         
-     } */
+ HStack {
+ ForEach(viewModel.schedule) { schedule in
+ 
+ VStack{
+ ScheduleSliderView(schedule: schedule)
+ 
+ }
+ .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
+ .onTapGesture {
+ viewModel.onGoToDetails?(schedule, viewModel.actors)
+ 
+ 
+ }
+ }
+ 
+ } */
