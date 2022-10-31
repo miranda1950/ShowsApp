@@ -7,16 +7,42 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 final class RootCoordinator: Coordinator {
+    
+    var navigationController = UINavigationController()
+    var tabBarController = UITabBarController()
+    var childCoordinators = [Coordinator] ()
     var childCoordinator: Coordinator?
     
+    
     func start() -> UIViewController {
-        let movieCoordinator = HomeCoordinator(navigationController: UINavigationController())
-        
-        childCoordinator = movieCoordinator
-        let homeViewController = movieCoordinator.start()
-        
-        return homeViewController
+        return createTabBar()
     }
+    
+    func createTabBar() -> UINavigationController {
+        let homeCoordinator = HomeCoordinator(navigationController: UINavigationController())
+        let searchCoordinator = SearchCoordinator(navigationController: UINavigationController())
+        let favoriteCoordinator = FavoritesCoordinator(navigationController: UINavigationController())
+        
+        childCoordinators = [homeCoordinator, searchCoordinator, favoriteCoordinator]
+        
+        let selectedColor = UIColor(Color("PrimaryYellow"))
+        let unselectedColor = UIColor(Color("LightGray"))
+        
+        
+        tabBarController.tabBar.unselectedItemTintColor = unselectedColor
+        UITabBar.appearance().tintColor = selectedColor
+        tabBarController.tabBar.backgroundColor = UIColor(Color("DarkGray"))
+        
+        
+        navigationController.viewControllers = [tabBarController]
+        tabBarController.viewControllers = childCoordinators.map { coordinator  in
+            coordinator.start()
+        }
+        return navigationController
+    }
+    
+    
 }

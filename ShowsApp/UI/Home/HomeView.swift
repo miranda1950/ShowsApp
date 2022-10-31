@@ -11,10 +11,9 @@ import UIKit
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService())
+    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService(), persistanceService: PersistanceService())
     
     @State private var count: Int = 0
-    
     
     
     var body: some View {
@@ -40,29 +39,31 @@ struct HomeView: View {
                             
                             
                             VStack {
-                                ZStack(alignment: .topLeading) {
+//                                ZStack(alignment: .topLeading) {
                                 HomeSliderView(movie: movie)
-                                    ZStack {
-                                        Rectangle()
-                                            .frame(width: 30, height: 30)
-                                            .clipShape(RoundedRectangle(cornerRadius: 5))
-                                            .background(Color("DarkGray"))
-                                            .overlay {
-                                                RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(Color("LightGray"), lineWidth: 1)
-                                            }
-                                            .onTapGesture{
-                                                viewModel.markFavorite()
-                                            }
-                                        
-                                        
-                                        Image(systemName: "heart.fill")
-                                            .foregroundColor(Color("LightGray"))
-                                           
-                                    }
-                                    .padding(.leading, 10)
-                                    
-                                }
+//                                    ZStack {
+//                                        Rectangle()
+//                                            .frame(width: 30, height: 30)
+//                                            .clipShape(RoundedRectangle(cornerRadius: 5))
+//                                            .background(Color("DarkGray"))
+//                                            .overlay {
+//                                                RoundedRectangle(cornerRadius: 5)
+//                                                    .stroke(Color("LightGray"), lineWidth: 1)
+//
+//                                            }
+//                                            .onTapGesture{
+//                                                viewModel.markFavoriteShow(movie)
+//
+//                                            }
+//
+//                                        Image(systemName: viewModel.showFavs ? "heart" : "heart.fill")
+//                                            .foregroundColor(Color("PrimaryYellow"))
+//
+//
+//                                    }
+//                                    .padding(.leading, 10)
+//
+//                                }
                             }
                             
                             .frame(width: geo.size.width * 0.52, height: geo.size.height * 0.50)
@@ -98,24 +99,26 @@ struct HomeView: View {
                         ForEach(viewModel.schedule) { schedule in
                             
                             VStack{
-                                ZStack(alignment: .topLeading) {
+//                                ZStack(alignment: .topLeading) {
                                 ScheduleSliderView(schedule: schedule)
-                                    ZStack {
-                                        Rectangle()
-                                            .frame(width: 30, height: 30)
-                                            .clipShape(RoundedRectangle(cornerRadius: 5))
-                                            .background(Color("DarkGray"))
-                                            .overlay {
-                                                RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(Color("LightGray"), lineWidth: 1)
-                                            }
-                                        
-                                        
-                                        Image(systemName: "heart.fill")
-                                            .foregroundColor(Color("LightGray"))
-                                    }
-
-                                }
+//                                    ZStack {
+//                                        Rectangle()
+//                                            .frame(width: 30, height: 30)
+//                                            .clipShape(RoundedRectangle(cornerRadius: 5))
+//                                            .background(Color("DarkGray"))
+//                                            .overlay {
+//                                                RoundedRectangle(cornerRadius: 5)
+//                                                    .stroke(Color("LightGray"), lineWidth: 1)
+//                                            }
+//                                            .onTapGesture {
+//                                                viewModel.markFavoriteSchedule(schedule)
+//                                            }
+//
+//                                        Image(systemName: "heart.fill" )
+//                                            .foregroundColor(.red)
+//                                    }
+//
+//                                }
                             }
                             .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
                             .onTapGesture {
@@ -129,7 +132,9 @@ struct HomeView: View {
                 }
                 .frame(width: geo.size.width, height: geo.size.height * 0.36)
                 .background(Color("DarkGray"))
+                .navigationBarHidden(true)
             }
+           
             
             
         }
@@ -156,6 +161,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService()))
+        HomeView(viewModel: HomeViewModel(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService(), persistanceService: PersistanceService()))
     }
 }

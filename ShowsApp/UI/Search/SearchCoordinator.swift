@@ -17,8 +17,6 @@ final class SearchCoordinator: Coordinator {
     
     func start() -> UIViewController {
         
-        
-        
         let vc = createSearchViewController()
         
         let navigationController = UINavigationController(rootViewController: vc)

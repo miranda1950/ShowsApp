@@ -29,9 +29,9 @@ final class FavoritesCoordinator: Coordinator {
     
     func createFavoritesViewController() -> UIViewController {
         
-        let vm = FavoritesViewModel()
+        let vm = FavoritesViewModel(persistanceService: PersistanceService())
         
-        let viewController = UIHostingController(rootView: FavoritesView())
+        let viewController = UIHostingController(rootView: FavoritesView(viewModel: vm))
         
         return viewController
     }

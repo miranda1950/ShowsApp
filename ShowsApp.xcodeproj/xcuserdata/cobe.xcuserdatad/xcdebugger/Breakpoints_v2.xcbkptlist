@@ -46,10 +46,104 @@
             filePath = "ShowsApp/UI/Home/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "HomeViewModel"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B8AD2EE-C24E-4394-A9CF-B5ADD3B571FC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowsApp/Services/Persistance/PersistanceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4D1B262-58C4-4570-9277-C3E7B5CED09E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowsApp/Services/Persistance/PersistanceService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "B4D1B262-58C4-4570-9277-C3E7B5CED09E - 33bbf41d20c397f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShowsApp.PersistanceService.deinit"
+                  moduleName = "ShowsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cobe/Desktop/ShowsApp%20%202/ShowsApp/Services/Persistance/PersistanceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "B4D1B262-58C4-4570-9277-C3E7B5CED09E - 3be5bba729efcf55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShowsApp.PersistanceService.__deallocating_deinit"
+                  moduleName = "ShowsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cobe/Desktop/ShowsApp%20%202/ShowsApp/Services/Persistance/PersistanceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "B4D1B262-58C4-4570-9277-C3E7B5CED09E - 4c29508cd4050f11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShowsApp.PersistanceService.__allocating_init() -&gt; ShowsApp.PersistanceService"
+                  moduleName = "ShowsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cobe/Desktop/ShowsApp%20%202/ShowsApp/Services/Persistance/PersistanceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "B4D1B262-58C4-4570-9277-C3E7B5CED09E - aa6c611a27582de1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShowsApp.PersistanceService.init() -&gt; ShowsApp.PersistanceService"
+                  moduleName = "ShowsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cobe/Desktop/ShowsApp%20%202/ShowsApp/Services/Persistance/PersistanceService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

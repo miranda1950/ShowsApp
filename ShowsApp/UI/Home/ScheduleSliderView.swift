@@ -10,23 +10,49 @@ import SwiftUI
 struct ScheduleSliderView: View {
     
     var schedule: ScheduleAPIResponse
+    @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService(), persistanceService: PersistanceService())
     
     var body: some View {
+        
         VStack {
-
-            AsyncImage(url: schedule.show.image?.medium) {
-                image in
-                image
-                    .resizable()
-                    .scaledToFit()
+            
+            ZStack(alignment: .topLeading) {
+                AsyncImage(url: schedule.show.image?.medium) {
+                    image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                    
+                } placeholder: {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-            } placeholder: {
-                ProgressView()
-                    .progressViewStyle(.circular)
+                ZStack {
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .background(Color("DarkGray"))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color("LightGray"), lineWidth: 1)
+                            
+                        }
+                        .onTapGesture{
+                            viewModel.markFavoriteSchedule(schedule)
+                            
+                        }
+                    
+                    
+                    Image(systemName: viewModel.showFavs ? "heart.fill" : "heart")
+                        .foregroundColor(Color("PrimaryYellow"))
+                    
+                    
+                    
+                }
+                
             }
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
@@ -47,7 +73,9 @@ struct ScheduleSliderView: View {
             }
             
             
+            
         }
+        
     }
 }
 
@@ -56,4 +84,5 @@ struct ScheduleSliderView: View {
  ScheduleSliderView(schedule: ScheduleAPIResponse)
  }
  }
+ 
  */

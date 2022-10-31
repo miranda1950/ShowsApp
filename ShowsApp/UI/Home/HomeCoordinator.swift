@@ -32,7 +32,7 @@ final class HomeCoordinator: Coordinator {
     }
     
     private func createHomeViewController()->UIViewController {
-        let vm = HomeViewModel<Any>(showsAPIService: ShowsAPIService(),scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService())
+        let vm = HomeViewModel<Any>(showsAPIService: ShowsAPIService(),scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService(), persistanceService: PersistanceService())
         let viewController = UIHostingController(rootView: HomeView(viewModel: vm))
         
         

@@ -24,10 +24,11 @@ struct DetailView<T>: View {
                         
                     }
                 }
-                .frame(width: geo.size.width, height: geo.size.height * 0.78)
+                .frame(width: geo.size.width, height: geo.size.height * 0.73)
             }
             
         }
+        
         
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)
