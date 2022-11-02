@@ -45,8 +45,8 @@ struct ScheduleSliderView: View {
                         }
                     
                     
-                    Image(systemName: viewModel.showFavs ? "heart.fill" : "heart")
-                        .foregroundColor(Color("PrimaryYellow"))
+                    Image(systemName:"heart.fill" )
+                        .foregroundColor(viewModel.isScheduleFavorite(schedule) ? Color("PrimaryYellow") : Color("LightGray"))
                     
                     
                     

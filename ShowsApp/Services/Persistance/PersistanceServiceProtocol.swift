@@ -11,5 +11,5 @@ protocol PersistanceServiceProtocol: AnyObject {
     
     var movieData: MovieData { get set }
     
-    var isFavorite: FavoriteChecked { get set }
+   
 }

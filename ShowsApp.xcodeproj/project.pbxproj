@@ -28,7 +28,6 @@
 		C572F0572908937700376FB7 /* CastAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F0562908937700376FB7 /* CastAPIService.swift */; };
 		C572F059290893FC00376FB7 /* CastAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572F058290893FC00376FB7 /* CastAPIError.swift */; };
 		C58137EF29100F770085C517 /* FavoriteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58137EE29100F770085C517 /* FavoriteCard.swift */; };
-		C58137F12910451E0085C517 /* FavoriteChecked.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58137F02910451E0085C517 /* FavoriteChecked.swift */; };
 		C589B00F29016AE30082288C /* ScheduleSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B00E29016AE30082288C /* ScheduleSliderView.swift */; };
 		C589B0122901B5830082288C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C589B0112901B5830082288C /* DetailView.swift */; };
 		C596241E29013E25009E9B16 /* HomeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596241D29013E25009E9B16 /* HomeSliderView.swift */; };
@@ -83,7 +82,6 @@
 		C572F0562908937700376FB7 /* CastAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIService.swift; sourceTree = "<group>"; };
 		C572F058290893FC00376FB7 /* CastAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAPIError.swift; sourceTree = "<group>"; };
 		C58137EE29100F770085C517 /* FavoriteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCard.swift; sourceTree = "<group>"; };
-		C58137F02910451E0085C517 /* FavoriteChecked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteChecked.swift; sourceTree = "<group>"; };
 		C589B00E29016AE30082288C /* ScheduleSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSliderView.swift; sourceTree = "<group>"; };
 		C589B0112901B5830082288C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C596241D29013E25009E9B16 /* HomeSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSliderView.swift; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 			isa = PBXGroup;
 			children = (
 				C5F8F80E290D500400ABD754 /* MovieData.swift */,
-				C58137F02910451E0085C517 /* FavoriteChecked.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,7 +392,6 @@
 				C5C106BE28FEB5C600218419 /* FavoritesViewModel.swift in Sources */,
 				C534D2B82901B8D800560D44 /* DetailCoordinator.swift in Sources */,
 				C5F8F811290D510000ABD754 /* PersistanceService.swift in Sources */,
-				C58137F12910451E0085C517 /* FavoriteChecked.swift in Sources */,
 				C570740828FD6944000B690C /* Coordinator.swift in Sources */,
 				C56719A7290A81EE00F82D30 /* SearchAPIResponse.swift in Sources */,
 				C5CE86952906F658002FAE8B /* MovieView.swift in Sources */,

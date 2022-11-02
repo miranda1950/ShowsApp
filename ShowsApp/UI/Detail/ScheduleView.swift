@@ -7,21 +7,48 @@
 
 import SwiftUI
 
-struct ScheduleView: View {
+struct ScheduleView<T>: View {
     
     var schedule: ScheduleAPIResponse
     let cast: [CastAPIResponse]
+    @ObservedObject var viewModel: DetailsViewModel<T>
+    
     var body: some View {
         VStack {
+            ZStack(alignment: .bottomTrailing) {
             AsyncImage(url: schedule.show.image?.original, content: { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                 
-            }, placeholder: { ProgressView()
+            }, placeholder: {
+                ProgressView()
             }
             )
-            
+                ZStack {
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .background(Color("DarkGray"))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color("LightGray"), lineWidth: 1)
+
+                        }
+                        .onTapGesture{
+                            
+                            viewModel.markFavoriteSchedule(schedule)
+                            viewModel.favoriteChecked(viewModel.showFavs)
+                        }
+                  
+                    
+                      Image(systemName:"heart.fill" )
+                          .foregroundColor(viewModel.isScheduleFavorite(schedule) ? Color("PrimaryYellow") : Color("LightGray"))
+                    
+                }
+
+                
+            }
             Text(schedule.show.summary ?? "N/A")
                 .foregroundColor(Color("LightGray"))
                 .font(.caption)

@@ -41,12 +41,12 @@ struct FavoriteCard: View {
                     
                 }
                 .onTapGesture{
-                    viewModel.removeFavorite(favorite)
-
+                   viewModel.removeFavorite(favorite)
+                    viewModel.favoriteChecked(viewModel.showFavs)
                 }
             
-            Image(systemName: "heart.fill" )
-                .foregroundColor(Color("PrimaryYellow"))
+                Image(systemName:"heart.fill" )
+                    .foregroundColor(viewModel.contains(favorite) ? Color("PrimaryYellow") : Color("LightGray"))
             
         }
         }

@@ -10,7 +10,6 @@ import SwiftUI
 struct FavoritesView: View {
     @ObservedObject var viewModel: FavoritesViewModel
     
-    
     var body: some View {
         VStack {
             ScrollView {
@@ -30,8 +29,6 @@ struct FavoritesView: View {
             viewModel.loadFavoriteMovies()
 
         }
-        
-       
         .navigationBarHidden(true)
     }
 }

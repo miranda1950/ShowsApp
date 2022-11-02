@@ -143,12 +143,11 @@ struct HomeView: View {
         .background(Color.black)
         .onAppear {
             if count < 1 {
-                DispatchQueue.main.async {
                     viewModel.loadShows()
                     viewModel.loadSchedule()
                     viewModel.emptyActorsField()
                     count += 1
-                }
+                
             }
             else { return }
         }

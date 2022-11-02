@@ -35,43 +35,64 @@ final class HomeViewModel<T>: ObservableObject {
     
     
     func loadShows() {
-        showsAPIService.fetchShow() { [weak self] result in
-                switch (result) {
-                case .success(let response):
-                    self?.movies.insert(contentsOf: response, at: 0)
+        
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            
+            self.showsAPIService.fetchShow() { result in
+                
+                DispatchQueue.main.async {              
+                    switch (result) {
+                    case .success(let response):
+                        self.movies.insert(contentsOf: response, at: 0)
+                        
+                    case .failure(let error):
+                        print("error: \( error.localizedDescription)")
+                    }
                     
-                case .failure(let error):
-                    print("error: \( error.localizedDescription)")
                 }
-    
-           
+            }
+            
         }
-        
-        
     }
     func loadSchedule() {
-        scheduleAPIService.fetchShowsSchedule() { [weak self] result in
+        DispatchQueue.global(qos: .background).async { [ weak self ] in
+            guard let self = self else { return }
+        
+            
+            self.scheduleAPIService.fetchShowsSchedule() { result in
+                DispatchQueue.main.async {
+                    
+                
                 switch (result) {
                 case .success(let response):
-                    self?.schedule.insert(contentsOf: response, at: 0)
+                    self.schedule.insert(contentsOf: response, at: 0)
                 case .failure(let error):
                     print("error: \(error.localizedDescription) ")
                 }
-            
+                }
+        }
         }
     }
     
     func getActors(_ movie: Int) {
-        castAPIService.fetchShowsSchedule(for: movie) { [weak self] result in
+        
+        
+        
+            
+            self.castAPIService.fetchShowsSchedule(for: movie) { result in
+                    
+                
             switch(result) {
             case .success(let response):
                 let cast = response
-                self?.actors.insert(contentsOf: cast, at: 0)
+                self.actors.insert(contentsOf: cast, at: 0)
                 
             case .failure(let error):
                 print("error \(error.localizedDescription)")
             }
-            
+                
+        
         }
     }
     
@@ -100,19 +121,19 @@ final class HomeViewModel<T>: ObservableObject {
         
         if contains(movieItem) {
             if let index = favoriteMovies.firstIndex(where: {$0.id == movie.id}) {
-                showFavs = false
+              
                 favoriteMovies.remove(at: index)
-                
+                showFavs = false
                 
             }
         }
         else {
-            showFavs = true
-            favoriteMovies.insert(movieItem, at: 0)
             
+            favoriteMovies.insert(movieItem, at: 0)
+            showFavs = true
             
         }
-        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movieItem)
+        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movieItem, favoriteChecked: showFavs)
         
     }
     
@@ -131,21 +152,40 @@ final class HomeViewModel<T>: ObservableObject {
             favoriteMovies.insert(movieItem.self, at: 0)
             showFavs = true
         }
-        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movieItem)
+        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movieItem, favoriteChecked: showFavs)
         
     }
+    
     
     func favoriteChecked(_ favoriteIconChecked: Bool){
         
-        let newFavoriteData = persistanceService.isFavorite.toogleFavorite(favoriteIconChecked)
+        let newFavoriteData = persistanceService.movieData.isIconChecked(favoriteIconChecked)
        
-        persistanceService.isFavorite = newFavoriteData
-        
-        
+        persistanceService.movieData.favoriteChecked = newFavoriteData
         
     }
     
+    func isShowFavorite(_ show: ShowsAPIResponse) -> Bool {
+        let favorites = persistanceService.movieData.movies
+        
+        for favorite in favorites {
+            if favorite.id == show.id {
+                return true
+            }
+        }
+        return false
+    }
     
+    func isScheduleFavorite(_ schedule: ScheduleAPIResponse) -> Bool {
+        let favorites = persistanceService.movieData.movies
+        
+        for favorite in favorites {
+            if favorite.id == schedule.id {
+                return true
+            }
+        }
+        return false
+    }
     
 }
 

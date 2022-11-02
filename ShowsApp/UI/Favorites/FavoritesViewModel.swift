@@ -12,6 +12,7 @@ final class FavoritesViewModel: ObservableObject {
     
     private let persistanceService: PersistanceServiceProtocol
     @Published var favoriteMovies = [MovieData.MovieItem]()
+    @Published var showFavs = Bool()
    
     
     init(persistanceService: PersistanceServiceProtocol) {
@@ -44,16 +45,27 @@ final class FavoritesViewModel: ObservableObject {
         if contains(movie) {
         if  let index = favoriteMovies.firstIndex(where: {$0.id == movie.id}) {
             favoriteMovies.remove(at: index)
+            showFavs = false
         }
         }
         else {
             favoriteMovies.insert(movie.self, at: 0)
+            showFavs = true
         }
         
-        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movie)
+        persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movie, favoriteChecked: showFavs)
     }
     
     
     
+    
+    func favoriteChecked(_ favoriteIconChecked: Bool){
+        
+        let newFavoriteData = persistanceService.movieData.isIconChecked(favoriteIconChecked)
+       
+        persistanceService.movieData.favoriteChecked = newFavoriteData
+        
+        
+    }
     
 }

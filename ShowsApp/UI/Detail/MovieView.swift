@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct MovieView: View {
+struct MovieView<T>: View {
     
     var movie: ShowsAPIResponse
     let cast: [CastAPIResponse]
+    @ObservedObject var viewModel: DetailsViewModel<T>
+    
     
     var body: some View {
         
         VStack {
+            ZStack(alignment: .bottomTrailing) {
             AsyncImage(url: movie.image.original, content: { image in
                 image
                     .resizable()
@@ -23,6 +26,28 @@ struct MovieView: View {
             }, placeholder: { ProgressView()
             }
             )
+                ZStack {
+                    Rectangle()
+                        .frame(width: 30, height: 30)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .background(Color("DarkGray"))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color("LightGray"), lineWidth: 1)
+
+                        }
+                        .onTapGesture{
+                            
+                            viewModel.markFavoriteShow(movie)
+                            viewModel.favoriteChecked(viewModel.showFavs)
+                        }
+                  
+                    
+                      Image(systemName:"heart.fill" )
+                          .foregroundColor(viewModel.isShowFavorite(movie) ? Color("PrimaryYellow") : Color("LightGray"))
+                    
+                }
+            }
             
             Text(movie.niceSummary)
                 .foregroundColor(Color("LightGray"))
@@ -77,8 +102,7 @@ struct MovieView: View {
                     
                 }
             }
-            
-            
+       
         }
         
     }

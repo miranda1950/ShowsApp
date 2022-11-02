@@ -22,7 +22,7 @@ final class DetailCoordinator<T>: Coordinator {
     
     func start() -> UIViewController {
         
-        let vm = DetailsViewModel<T>(data: data, cast: cast)
+        let vm = DetailsViewModel<T>(data: data, cast: cast, persistanceService: PersistanceService())
         let vc = UIHostingController(rootView: DetailView<T>(viewModel: vm))
         
         vm.onDissmised = { [weak self] in

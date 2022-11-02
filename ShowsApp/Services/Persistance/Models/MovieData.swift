@@ -13,6 +13,8 @@ struct MovieData: Codable {
     let movies: [MovieItem]
     let movieItem: MovieItem
     
+    var favoriteChecked: Bool
+    
     
     struct MovieItem: Codable {
         let id: Int
@@ -28,9 +30,14 @@ struct MovieData: Codable {
         }
         
     }
+
+    mutating func isIconChecked(_ bool: Bool) -> Bool {
+        favoriteChecked = bool
+        return favoriteChecked
+    }
     
     static var defaultMovieData: Self {
-        MovieData(movies: [], movieItem: MovieItem(id: 0, imageMovie: URL(string: "")))
+        MovieData(movies: [], movieItem: MovieItem(id: 0, imageMovie: URL(string: "")), favoriteChecked: true)
     }
     
     

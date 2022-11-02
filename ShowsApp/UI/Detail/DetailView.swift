@@ -17,10 +17,10 @@ struct DetailView<T>: View {
                 VStack {
                     if ((viewModel.data as? ShowsAPIResponse) != nil) {
                         
-                        MovieView(movie: viewModel.data as! ShowsAPIResponse, cast: viewModel.cast)
+                        MovieView<T>(movie: viewModel.data as! ShowsAPIResponse, cast: viewModel.cast, viewModel: viewModel)
                     }
                     else  {
-                        ScheduleView(schedule: viewModel.data as! ScheduleAPIResponse, cast: viewModel.cast)
+                        ScheduleView<T>(schedule: viewModel.data as! ScheduleAPIResponse, cast: viewModel.cast,viewModel: viewModel)
                         
                     }
                 }

@@ -17,14 +17,5 @@ final class PersistanceService: PersistanceServiceProtocol {
         }
     }
     
-    var isFavorite: FavoriteChecked {
-        get {
-            
-            UserDefaults.standard.load() ?? FavoriteChecked.defaultData
-        }
-        
-        set {
-            UserDefaults.standard.save(newValue)
-        }
-    }
+    
 }
