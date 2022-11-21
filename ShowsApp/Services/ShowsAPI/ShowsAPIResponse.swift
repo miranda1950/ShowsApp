@@ -37,6 +37,14 @@ struct ShowsAPIResponse: Identifiable, Codable{
         let average: Double?
     }
     
+    func createShowDataFromSearch(_ movie: SearchAPIResponse) -> ShowsAPIResponse {
+        return ShowsAPIResponse(id: movie.show?.id ?? 0, name: movie.show?.name ?? "n/A", premiered: "", summary: movie.show?.summary ?? "n/a", image: Photo(medium: movie.show?.image?.medium, original: movie.show?.image?.original), rating: Rating(average: 0.0))
+    }
+    
+    func createShowDataFromFavorites(_ movie: MovieData.MovieItem) -> ShowsAPIResponse {
+        return ShowsAPIResponse(id: movie.id, name: "", premiered: "", summary: movie.summary, image: Photo(medium: movie.imageMovie, original: movie.imageMovie), rating: Rating(average: 0.0))
+    }
+    
     init(id: Int, name: String, premiered: String, summary: String, image: Photo, rating: Rating) {
         self.id = id
         self.name = name
@@ -46,7 +54,9 @@ struct ShowsAPIResponse: Identifiable, Codable{
         self.rating = rating
     }
     
-    
+    static var defaultShowData: Self {
+        ShowsAPIResponse(id: 0, name: "", premiered: "", summary: "", image: Photo(medium: URL(string: ""), original: URL(string: "")), rating: Rating(average: 0.0))
+    }
     
     
 }

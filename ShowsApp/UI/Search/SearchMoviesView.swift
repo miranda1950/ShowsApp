@@ -10,6 +10,8 @@ import SwiftUI
 struct SearchMoviesView: View {
     
     var movies: [SearchAPIResponse]
+    @ObservedObject var viewModel: SearchViewModel<Any>
+    
     
     var body: some View {
         ScrollView {
@@ -34,19 +36,27 @@ struct SearchMoviesView: View {
                                 .foregroundColor(Color("LightGray"))
                             Text(movie.show?.yearDate ?? "n")
                                 .foregroundColor(Color("LightGray"))
+                            
                         }
+                    }
+                    
+                    .onTapGesture{
+                        viewModel.getActors(viewModel.createShowData(movie).id)
+                        viewModel.onGoToDetails?(viewModel.createShowData(movie), viewModel.actors)
+                        
                     }
                     .frame(height: 100)
                     .padding(.bottom, 3)
                 }
+                
             }
         }
     }
 }
 
-struct SearchMoviesView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchMoviesView(movies: [SearchAPIResponse]())
-    }
-}
+//struct SearchMoviesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchMoviesView(movies: [SearchAPIResponse](), viewModel: SearchViewModel<T>)
+//    }
+//}
 

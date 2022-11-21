@@ -7,14 +7,20 @@
 
 import SwiftUI
 
-final class SearchViewModel: ObservableObject {
+final class SearchViewModel<T>: ObservableObject {
     
     private let searchAPIService: SearchAPIServiceProtocol
+    private let showsAPIResponse: ShowsAPIResponse
+    private let castAPIService: CastAPIServiceProtocol
+    var onGoToDetails: ((_ movie: ShowsAPIResponse, _ cast: [CastAPIResponse]) -> Void)?
     
     @Published var movies = [SearchAPIResponse] ()
+    @Published var actors = [CastAPIResponse] ()
     
-    init(searchAPIService: SearchAPIServiceProtocol) {
+    init(searchAPIService: SearchAPIServiceProtocol, showsAPIResponse: ShowsAPIResponse, castAPIService: CastAPIServiceProtocol) {
         self.searchAPIService = searchAPIService
+        self.showsAPIResponse = showsAPIResponse
+        self.castAPIService = castAPIService
     }
     
     func loadShows(for text: String) {
@@ -39,5 +45,24 @@ final class SearchViewModel: ObservableObject {
         }
     }
     
+    func createShowData(_ movie: SearchAPIResponse) -> ShowsAPIResponse {
+        let show = showsAPIResponse.createShowDataFromSearch(movie)
+        return show
+    }
+    
+    func getActors(_ movie: Int) {
+            self.castAPIService.fetchShowsSchedule(for: movie) { result in
+            switch(result) {
+            case .success(let response):
+                let cast = response
+                self.actors.insert(contentsOf: cast, at: 0)
+                
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+            }
+        }
+    }
+    
+  
     
 }

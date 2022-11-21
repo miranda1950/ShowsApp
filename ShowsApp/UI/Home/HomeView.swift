@@ -13,9 +13,6 @@ struct HomeView: View {
     
     @ObservedObject var viewModel = HomeViewModel<Any>(showsAPIService: ShowsAPIService(), scheduleAPIService: ScheduleAPIService(), castAPIService: CastAPIService(), persistanceService: PersistanceService())
     
-    @State private var count: Int = 0
-    
-    
     var body: some View {
         
         GeometryReader { geo in
@@ -35,37 +32,11 @@ struct HomeView: View {
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.movies) { movie in
-                            
-                            
+                        ForEach(viewModel.movies.prefix(15)) { movie in
                             VStack {
-//                                ZStack(alignment: .topLeading) {
                                 HomeSliderView(movie: movie)
-//                                    ZStack {
-//                                        Rectangle()
-//                                            .frame(width: 30, height: 30)
-//                                            .clipShape(RoundedRectangle(cornerRadius: 5))
-//                                            .background(Color("DarkGray"))
-//                                            .overlay {
-//                                                RoundedRectangle(cornerRadius: 5)
-//                                                    .stroke(Color("LightGray"), lineWidth: 1)
-//
-//                                            }
-//                                            .onTapGesture{
-//                                                viewModel.markFavoriteShow(movie)
-//
-//                                            }
-//
-//                                        Image(systemName: viewModel.showFavs ? "heart" : "heart.fill")
-//                                            .foregroundColor(Color("PrimaryYellow"))
-//
-//
-//                                    }
-//                                    .padding(.leading, 10)
-//
-//                                }
-                            }
-                            
+                                    
+                           }
                             .frame(width: geo.size.width * 0.52, height: geo.size.height * 0.50)
                             .onTapGesture {
                                 viewModel.getActors(movie.id)
@@ -74,8 +45,10 @@ struct HomeView: View {
                             
                         }
                         
+                        
                     }
                 }
+               
                 .frame(width: geo.size.width, height: geo.size.height * 0.50)
                 .background(Color("DarkGray"))
                 
@@ -96,29 +69,12 @@ struct HomeView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.schedule) { schedule in
+                        ForEach(viewModel.schedule.prefix(15)) { schedule in
                             
                             VStack{
-//                                ZStack(alignment: .topLeading) {
+
                                 ScheduleSliderView(schedule: schedule)
-//                                    ZStack {
-//                                        Rectangle()
-//                                            .frame(width: 30, height: 30)
-//                                            .clipShape(RoundedRectangle(cornerRadius: 5))
-//                                            .background(Color("DarkGray"))
-//                                            .overlay {
-//                                                RoundedRectangle(cornerRadius: 5)
-//                                                    .stroke(Color("LightGray"), lineWidth: 1)
-//                                            }
-//                                            .onTapGesture {
-//                                                viewModel.markFavoriteSchedule(schedule)
-//                                            }
-//
-//                                        Image(systemName: "heart.fill" )
-//                                            .foregroundColor(.red)
-//                                    }
-//
-//                                }
+
                             }
                             .frame(width: geo.size.width * 0.34, height: geo.size.height * 0.42)
                             .onTapGesture {
@@ -142,15 +98,16 @@ struct HomeView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
         .onAppear {
-            if count < 1 {
+           
                     viewModel.loadShows()
                     viewModel.loadSchedule()
                     viewModel.emptyActorsField()
-                    count += 1
-                
-            }
-            else { return }
+                             
         }
+        
+       
+        
+
         
     }
     

@@ -10,7 +10,8 @@ import SwiftUI
 struct FavoriteCard: View {
     
    
-    @ObservedObject var viewModel = FavoritesViewModel(persistanceService: PersistanceService())
+    @ObservedObject var viewModel: FavoritesViewModel<Any>
+    
     var favorite: MovieData.MovieItem
     
     
@@ -23,12 +24,17 @@ struct FavoriteCard: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .scaledToFit()
-            
-            
         } placeholder: {
             ProgressView()
                 .progressViewStyle(.circular)
         }
+        .onTapGesture {
+                viewModel.getActors(viewModel.createShowData(favorite).id)
+                viewModel.onGoToDetails?(viewModel.createShowData(favorite),viewModel.actors)
+                
+            
+        }
+        
         
             ZStack {
             Rectangle()
@@ -50,9 +56,7 @@ struct FavoriteCard: View {
             
         }
         }
-        
-    
-        
     }
+        
 }
 

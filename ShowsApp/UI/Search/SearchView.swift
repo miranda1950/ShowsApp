@@ -9,14 +9,15 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @ObservedObject var viewModel: SearchViewModel
+    @ObservedObject var viewModel: SearchViewModel<Any>
     @State var search = ""
     var body: some View {
         ZStack(alignment: .leading) {
             
-            SearchMoviesView(movies: viewModel.movies)
+            SearchMoviesView(movies: viewModel.movies, viewModel: viewModel)
                 .searchable(text: $search)
                 .foregroundColor(Color("LightGray"))
+                
         }
         .onChange(of: search) { newValue in
             if search.isEmpty {
@@ -36,10 +37,10 @@ struct SearchView: View {
     
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(viewModel: SearchViewModel(searchAPIService: searchAPIService()))
-    }
-}
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchView(viewModel: SearchViewModel(searchAPIService: searchAPIService(), showsAPIResponse: ShowsAPIResponse, castAPIService: CastAPIService()))
+//    }
+//}
 
 

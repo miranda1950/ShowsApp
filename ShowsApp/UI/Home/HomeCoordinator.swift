@@ -18,13 +18,10 @@ final class HomeCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     func start() -> UIViewController {
-        
-        
         let vc = createHomeViewController()
         
         let navigationController = UINavigationController(rootViewController: vc)
         self.navigationController = navigationController
-        //vc.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
         

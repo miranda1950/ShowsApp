@@ -56,12 +56,11 @@ struct HomeSliderView: View {
                         .onTapGesture{
                             viewModel.markFavoriteShow(movie)
                             viewModel.favoriteChecked(viewModel.showFavs)
-                            
                         }
                   
                     Image(systemName:"heart.fill" )
                         .foregroundColor(viewModel.isShowFavorite(movie) ? Color("PrimaryYellow") : Color("LightGray"))
-                    
+           
                 }
                 .padding(.leading, 10)
 

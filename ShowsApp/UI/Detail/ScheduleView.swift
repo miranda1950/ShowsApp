@@ -52,7 +52,7 @@ struct ScheduleView<T>: View {
             Text(schedule.show.summary ?? "N/A")
                 .foregroundColor(Color("LightGray"))
                 .font(.caption)
-                .lineLimit(4)
+                .lineLimit(3)
             VStack {
                 HStack {
                     Text("Cast")
@@ -70,7 +70,7 @@ struct ScheduleView<T>: View {
             .padding(.leading, 5)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(cast, id:\.person?.id) { person in
+                    ForEach(cast.prefix(6), id:\.person?.id) { person in
                         
                         VStack {
                             VStack {

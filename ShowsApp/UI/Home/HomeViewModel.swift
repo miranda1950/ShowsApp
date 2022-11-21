@@ -17,10 +17,10 @@ final class HomeViewModel<T>: ObservableObject {
     var onGoToDetails: ((_ movie: T, _ cast: [CastAPIResponse]) -> Void)?
     
     @Published var movies = [ShowsAPIResponse] ()
-    @Published var schedule = [ScheduleAPIResponse] ()
+    @Published var schedule = [ScheduleAPIResponse]()
     @Published var actors = [CastAPIResponse] ()
     @Published var showFavs = Bool()
-    
+    @Published var text = String()
     
    
     init(showsAPIService: ShowsAPIServiceProtocol, scheduleAPIService: ScheduleAPIServiceProtocol,castAPIService: CastAPIServiceProtocol, persistanceService: PersistanceServiceProtocol){
@@ -55,7 +55,7 @@ final class HomeViewModel<T>: ObservableObject {
             
         }
     }
-    func loadSchedule() {
+    func loadSchedule()  {
         DispatchQueue.global(qos: .background).async { [ weak self ] in
             guard let self = self else { return }
         
@@ -75,14 +75,9 @@ final class HomeViewModel<T>: ObservableObject {
         }
     }
     
-    func getActors(_ movie: Int) {
-        
-        
-        
+    func getActors(_ movie: Int)  {
             
             self.castAPIService.fetchShowsSchedule(for: movie) { result in
-                    
-                
             switch(result) {
             case .success(let response):
                 let cast = response
@@ -96,7 +91,7 @@ final class HomeViewModel<T>: ObservableObject {
         }
     }
     
-    func emptyActorsField(){
+    func emptyActorsField()  {
         for _ in actors.enumerated().reversed() {
             actors.removeAll()
         }
@@ -134,6 +129,7 @@ final class HomeViewModel<T>: ObservableObject {
             
         }
         persistanceService.movieData = MovieData(movies: favoriteMovies, movieItem: movieItem, favoriteChecked: showFavs)
+            
         
     }
     

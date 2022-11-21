@@ -11,6 +11,7 @@ import SwiftUI
 final class FavoritesCoordinator: Coordinator {
     
     var navigationController: UINavigationController?
+    var childCoordinator: [Coordinator]?
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -29,10 +30,23 @@ final class FavoritesCoordinator: Coordinator {
     
     func createFavoritesViewController() -> UIViewController {
         
-        let vm = FavoritesViewModel(persistanceService: PersistanceService())
+        let vm = FavoritesViewModel<Any>(persistanceService: PersistanceService(),showsAPIResponse: ShowsAPIResponse.defaultShowData,castAPIService: CastAPIService())
         
         let viewController = UIHostingController(rootView: FavoritesView(viewModel: vm))
         
+        vm.onGoToDetails = { [weak self] movie, cast in
+            self?.goToDetails(name: movie, cast: cast)
+            
+        }
+        
         return viewController
+    }
+    
+    private func goToDetails(name: ShowsAPIResponse, cast: [CastAPIResponse]) {
+        
+        let detailCoordinator = DetailCoordinator(data: name, cast: cast)
+        childCoordinator?.append(detailCoordinator)
+        let detailViewController = detailCoordinator.start()
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

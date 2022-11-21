@@ -8,15 +8,24 @@
 import SwiftUI
 
 
-final class FavoritesViewModel: ObservableObject {
+final class FavoritesViewModel<T>: ObservableObject {
     
     private let persistanceService: PersistanceServiceProtocol
+    private let showsAPIResponse: ShowsAPIResponse
+    private let castAPIService: CastAPIServiceProtocol
+    
+    var onGoToDetails: ((_ movie: ShowsAPIResponse, _ cast: [CastAPIResponse]) -> Void)?
+    
+    @Published var movies = [SearchAPIResponse] ()
+    @Published var actors = [CastAPIResponse] ()
     @Published var favoriteMovies = [MovieData.MovieItem]()
     @Published var showFavs = Bool()
    
     
-    init(persistanceService: PersistanceServiceProtocol) {
+    init(persistanceService: PersistanceServiceProtocol, showsAPIResponse: ShowsAPIResponse, castAPIService: CastAPIServiceProtocol) {
         self.persistanceService = persistanceService
+        self.showsAPIResponse = showsAPIResponse
+        self.castAPIService = castAPIService
         
     }
     
@@ -64,8 +73,33 @@ final class FavoritesViewModel: ObservableObject {
         let newFavoriteData = persistanceService.movieData.isIconChecked(favoriteIconChecked)
        
         persistanceService.movieData.favoriteChecked = newFavoriteData
-        
-        
     }
+    
+    func emptyActorsField(){
+        for _ in movies.enumerated().reversed() {
+            movies.removeAll()
+        }
+    }
+    
+    func createShowData(_ movie: MovieData.MovieItem) -> ShowsAPIResponse {
+        let show = showsAPIResponse.createShowDataFromFavorites(movie)
+        
+        return show
+    }
+    
+    func getActors(_ movie: Int) {
+            self.castAPIService.fetchShowsSchedule(for: movie) { result in
+                    
+                
+            switch(result) {
+            case .success(let response):
+                let cast = response
+                self.actors.insert(contentsOf: cast, at: 0)
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+            }
+        }
+    }
+    
     
 }

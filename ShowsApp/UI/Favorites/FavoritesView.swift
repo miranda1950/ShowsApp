@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @ObservedObject var viewModel: FavoritesViewModel
+    @ObservedObject var viewModel: FavoritesViewModel<Any>
     
     var body: some View {
         VStack {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 5) {
             ForEach(viewModel.favoriteMovies, id: \.id) { favorite in
-                FavoriteCard(favorite: favorite)
+                FavoriteCard(viewModel: viewModel, favorite: favorite)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                
                    
             }
             
@@ -36,6 +37,6 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoritesView(viewModel: .init(persistanceService: PersistanceService()))
+        FavoritesView(viewModel: .init(persistanceService: PersistanceService(), showsAPIResponse: ShowsAPIResponse.defaultShowData, castAPIService: CastAPIService()))
     }
 }

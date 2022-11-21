@@ -31,7 +31,6 @@ final class RootCoordinator: Coordinator {
         let selectedColor = UIColor(Color("PrimaryYellow"))
         let unselectedColor = UIColor(Color("LightGray"))
         
-        
         tabBarController.tabBar.unselectedItemTintColor = unselectedColor
         UITabBar.appearance().tintColor = selectedColor
         tabBarController.tabBar.backgroundColor = UIColor(Color("DarkGray"))
